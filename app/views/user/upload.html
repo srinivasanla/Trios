@@ -1,0 +1,247 @@
+#{extends 'user.html'  /}
+<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><a href="@{user.index(c.id)}"><font color="white">E-Mags</font></a><!--<span>Administry</span> demo--><h4>A Premium Magazine	</h4></div>
+			<!-- Top navigation -->
+			<div id="topnav">
+				
+				Logged in as <b>${c.name}</b>
+				<span>|</span> <a href="@{user.passcheck(c.id)}">Settings</a>
+				<span>|</span> <a href="@{user.logout(c)}">Logout</a><br />
+				
+			</div>
+			<!-- End of Top navigation -->
+			<!-- Main navigation -->
+			<nav id="menu">
+				<ul class="sf-menu">
+					<li class="current"><a href="@{user.index(c.id)}">DashBoard</a></li>
+					
+					
+					<li>
+						<a href="#">Articles</a>
+						<ul>
+							<li>
+								<a href="#">Sample Article</a>
+							</li>
+							<li>
+								<a href="#">New Article</a>
+								<ul>
+									<li><a href="@{user.upload(c.id)}">Upload Article</a></li>
+									<li><a href="@{user.article(c.id)}">Compose Article</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Your Archieves</a>
+						<ul>
+							<li>
+								<a href="@{user.published(c.id)}">Published</a>
+							</li>
+							<li>
+								<a href="@{user.draft(c.id)}">Drafts</a>
+							</li>
+							<li>
+								<a href="@{user.posted(c.id)}">Posted</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			<aside><b><a href="@{user.passcheck(c.id)}">Basic Info</a></b></aside>
+			
+			<!-- End of Aside links -->
+		</div>
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>Dashboard</h1>
+			<!-- Quick search box -->
+			#{form @user.search()}<input class="" type="text" value="Enter Article Name to search" id="q" name="keyword" />
+							<input class="" type="hidden" value="${c.id}"  name="a" />
+			#{/form}
+		</div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">
+
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.wysiwyg.min.js'}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	/* setup navigation, content boxes, etc... */
+	Administry.setup();
+	
+	// html textbox editor
+	$('.wysiwyg').wysiwyg({
+		controls: {
+			strikeThrough : { visible : true },
+			underline     : { visible : true },
+
+			justifyLeft   : { visible : true },
+			justifyCenter : { visible : true },
+			justifyRight  : { visible : true },
+			justifyFull   : { visible : true },
+
+			indent  : { visible : true },
+			outdent : { visible : true },
+
+			subscript   : { visible : true },
+			superscript : { visible : true },
+
+			undo : { visible : true },
+			redo : { visible : true },
+
+			insertOrderedList    : { visible : true },
+			insertUnorderedList  : { visible : true },
+			insertHorizontalRule : { visible : true },
+
+			h4: {
+				  visible: true,
+				  className: 'h4',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h4>' : 'h4'],
+				  tags: ['h4'],
+				  tooltip: 'Header 4'
+			},
+			h5: {
+				  visible: true,
+				  className: 'h5',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h5>' : 'h5'],
+				  tags: ['h5'],
+				  tooltip: 'Header 5'
+			},
+			h6: {
+				  visible: true,
+				  className: 'h6',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h6>' : 'h6'],
+				  tags: ['h6'],
+				  tooltip: 'Header 6'
+			},
+
+			cut   : { visible : true },
+			copy  : { visible : true },
+			paste : { visible : true },
+			html  : { visible: true }
+		}
+	}); 
+	
+	// date input fallback check
+	Administry.dateInput('#datepick'); 
+
+});
+</script>
+
+<h3>Form validation example</h3>
+<div class="box box-info">All fields are required</div>
+<form action="@{user.postarticle()}" method="POST" enctype="multipart/form-data">
+
+<fieldset>
+		<legend>Text fields</legend>
+		<p>
+			<label for="title">Article Title:</label><br/>
+			<input type="text"   value="" name="title"/>
+			<span class="color">#{error 'title' /}</span>
+		</p>
+		<p>
+			<label for="articleType">Article Type:</label><br/>
+			<select id="select" name="articleType">
+										<option value="">Select One</option>
+										<option value="education">Education</option>
+										<option value="entertainment">Entertainment</option>
+										<option value="travel">Travel</option>
+										<option value="cultural">Cultural</option>
+										<option value="sports">Sports</option>
+										<option value="technology">Technology</option>
+										<option value="project">Projects</option>
+										<option value="others">Other Departments</option>
+			</select>
+			<span class="color">#{error 'articleType' /}</span>	
+		</p>
+		<p>
+			<label for="departmentName">Article Department:</label><br/>
+			<select id="select" name="departmentName">
+										<option value="">Select One</option>
+										<option value="computer">Computer Science</option>
+										<option value="electricle">Electricle</option>
+										<option value="communication">Communication</option>
+										<option value="biotechnology">Bio Technology</option>
+										<option value="mechanical">Mechanical</option>
+										<option value="civil">Civil</option>
+										<option value="chemistry">Chemistry</option>
+										<option value="physics">Physics</option>
+										<option value="mathematics">Mathematics</option>
+										<option value="others">Other Departments</option>
+			</select>
+			<span class="color">#{error 'departmentName' /}</span>	
+		</p>
+			<label for="categoryName">Article Category:</label><br/>
+			<input type="text"   value="" name="categoryName"/>		 					
+			<span class="color">#{error 'categoryName' /}</span>
+		<p>
+			<label for="tagName">Related Tags:</label><br/>
+			<input type="text" id="datepick" class="" value="" name="tagName"/>
+			<span class="color">#{error 'tagName' /}</span>
+		</p>
+		
+		<p>
+			<label for="description">Article Description:</label><br/>
+			<textarea id="description" class=""  cols="100" rows="5" value="${flash.description}"name="description"></textarea>
+			<span class="color">#{error 'description' /}</span>
+
+		</p>
+		
+		<p>
+			<label for="author"></label><br/>
+			<input type="hidden"  class="" value="${c.name}" name="author"/>
+		</p>
+		<p>
+			<label for="accountId"></label><br/>
+			<input type="hidden"  class="" value="${c.id}" name="accountId"/>
+		</p>
+		
+		
+		
+		<p>
+								<br>			
+                                <label for="articleContent" class="form-label">Upload Your Article Here<small></small></label></br>
+                                <div class="form-input"><input type="file" id="file" name="articleContent" /></div>
+								</br>
+								<span class="color">#{error 'articleContent' /}</span>
+		</p>
+		<p>
+			<label for="mailId"></label><br/>
+			
+			<input type="hidden"  class="" value="${c.mailId}" name="mailId"/>
+		</p>
+		<p>
+			<label for="enabled">Option:</label><br/>
+			<select id="select" name="enabled">
+										<option value="">Select One</option>
+										<option value="0">To Drafts</option>
+										<option value="1">To Publish</option>
+										
+			</select>	
+			<span class="color">#{error 'enabled' /}</span>
+		</p>			
+		<p>
+		<input type="submit" name="submit" value="Submit"  />
+		<input type="reset" name="reset" value="Reset" />
+		
+
+</fieldset>
+</form>
+

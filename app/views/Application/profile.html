@@ -1,0 +1,51 @@
+#{extends 'main.html' /}
+ #{set pagetitle:'Info*' /}			
+			
+			<div id="content" class="no_sidebar"></div>
+            
+				
+                <div class="post_inside">
+				<h1 class="color">Srinivasan</h1>
+                	<h2>About ME!</h2>
+                    <div class="clear"></div>
+                    <p>${c.abouthim}</p>
+                    <div class="share">
+                    	<div class="share_inside">
+                  		  	<span>Wanna Contact me..?</span>
+                    	    <ul>
+                    	    	<li><a href="${c.blogger}"><img src="@{'public/images/rss_icon.jpg'}" alt="RSS" /></a></li>
+                    	        <li><a href="${c.fb}"><img src="@{'public/images/fb.jpg'}" alt="Facebook" /></a></li>
+                    	        <li><a href="${c.twitter}"><img src="@{'public/images/twitter_icon.jpg'}" alt="Twitter" /></a></li>
+                    	        
+                    	    </ul>
+                        </div>
+                    </div>
+					
+                    <div class="comments">
+                    	
+                        <div class="comment">
+                            <div class="comment_content">
+							<h3>Mail Id</h3>
+								<p>srinivasan.la10@gmail.com.</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="comments">
+                    	
+                        <div class="comment">
+                            <div class="comment_content">
+							<h3>Posted Articles</h3>
+							#{list items:article, as:'show'}
+								<p><a href=@{application.fullwidth(show.id)}>${show.title}</p>
+							#{/list}
+							</div>
+                        </div>
+                        
+                    </div>
+                    	
+		
+              			
+               	    
+                </div>

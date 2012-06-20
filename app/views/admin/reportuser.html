@@ -1,0 +1,39 @@
+	#{extends 'admin.html'  /}
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">					
+
+					<h3>Email Verification</h3>
+					
+					#{form @admin.sendemail()}
+					
+					<fieldset>
+							<legend>Text fields</legend>
+							<p>
+								<label for="input2">Username:</label><br/>
+								<input type="text" id="input2" class="half title" value="${c.name}" name="input2"/>
+							</p>
+							<p>
+								<label for="to">User mailId:</label><br/>
+								<div>${c.mailId}
+								<input type="hidden" id="input2" class="half title" value="${c.mailId}" name="to"/>
+							</p>
+
+								<label for="subject">Subject:</label><br/>
+								<input type="text" id="input2" class="half title" value="noreply-EMags" name="subject"/>
+							<p>
+								
+							</p>
+							<p>
+								<label for="message">Message:</label><br/>
+								<textarea type="text" id="message" class="half wysiwyg"  cols="50" rows="12" value = "Thank you for registering with E-Mags and clickhere to login http://localhost:9000/application/login "   name="message">"Thank you for registering with E-Mags and clickhere to login http://localhost:9000/application/login "</textarea>
+							</p>
+							<input type="submit" name="submit" value="send"  />
+							<input type="reset" name="reset" value="Discard" />
+	
+					
+					</fieldset>
+						
+					#{/form}

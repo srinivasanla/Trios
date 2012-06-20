@@ -1,0 +1,206 @@
+#{extends 'user.html'  /}
+<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><a href="@{user.index(c.id)}"><font color="white">E-Mags</font></a><!--<span>Administry</span> demo--><h4>A Premium Magazine	</h4></div>
+			<!-- Top navigation -->
+			<div id="topnav">
+				
+				Logged in as <b>${c.name}</b>
+				<span>|</span> <a href="@{user.passcheck(c.id)}">Settings</a>
+				<span>|</span> <a href="@{user.logout(c)}">Logout</a><br />
+				
+			</div>
+			<!-- End of Top navigation -->
+			<!-- Main navigation -->
+			<nav id="menu">
+				<ul class="sf-menu">
+					<li class="current"><a href="@{user.index(c.id)}">DashBoard</a></li>
+					
+					
+					<li>
+						<a href="#">Articles</a>
+						<ul>
+							<li>
+								<a href="#">Sample Article</a>
+							</li>
+							<li>
+								<a href="#">New Article</a>
+								<ul>
+									<li><a href="@{user.uploadarticle(c.id)}">Upload Article</a></li>
+									<li><a href="@{user.article(c.id)}">Compose Article</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Your Archieves</a>
+						<ul>
+							<li>
+								<a href="@{user.published(c.id)}">Published</a>
+							</li>
+							<li>
+								<a href="@{user.draft(c.id)}">Drafts</a>
+							</li>
+							<li>
+								<a href="@{user.posted(c.id)}">Posted</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			<aside><b><a href="@{user.passcheck(c.id)}">Basic Info</a></b></aside>
+			
+			<!-- End of Aside links -->
+		</div>
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>Dashboard</h1>
+			<!-- Quick search box -->
+			#{form @user.search()}<input class="" type="text" value="Enter Article Name to search " id="q" name="keyword" />
+							<input class="" type="hidden" value="${c.id}"  name="a" />
+			#{/form}
+		</div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">
+
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.wysiwyg.min.js'}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	/* setup navigation, content boxes, etc... */
+	Administry.setup();
+	
+	// html textbox editor
+	$('.wysiwyg').wysiwyg({
+		controls: {
+			strikeThrough : { visible : true },
+			underline     : { visible : true },
+
+			justifyLeft   : { visible : true },
+			justifyCenter : { visible : true },
+			justifyRight  : { visible : true },
+			justifyFull   : { visible : true },
+
+			indent  : { visible : true },
+			outdent : { visible : true },
+
+			subscript   : { visible : true },
+			superscript : { visible : true },
+
+			undo : { visible : true },
+			redo : { visible : true },
+
+			insertOrderedList    : { visible : true },
+			insertUnorderedList  : { visible : true },
+			insertHorizontalRule : { visible : true },
+
+			h4: {
+				  visible: true,
+				  className: 'h4',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h4>' : 'h4'],
+				  tags: ['h4'],
+				  tooltip: 'Header 4'
+			},
+			h5: {
+				  visible: true,
+				  className: 'h5',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h5>' : 'h5'],
+				  tags: ['h5'],
+				  tooltip: 'Header 5'
+			},
+			h6: {
+				  visible: true,
+				  className: 'h6',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h6>' : 'h6'],
+				  tags: ['h6'],
+				  tooltip: 'Header 6'
+			},
+
+			cut   : { visible : true },
+			copy  : { visible : true },
+			paste : { visible : true },
+			html  : { visible: true }
+		}
+	}); 
+	
+	// date input fallback check
+	Administry.dateInput('#datepick'); 
+
+});
+</script>
+
+<h3>Profile Page</h3>
+<div class="box box-info">Here is the place to say about yourself</div>
+*{<div class="box box-error">Here is the place to say about yourself</div>}*
+
+#{ form @user.profileupdate() }
+
+
+<fieldset>
+		<legend>Text fields</legend>
+		<p>
+			<label for="name">Name:</label> &nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="text"  class="" value="${c.name}" name="name"/>
+		</p>
+		
+		<p>
+			<label for="password">Password:</label> &nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="password"  class="" value="${c.password}" name="password"/>
+		</p>
+		
+		<p>
+			<label for="mailId">MailId:</label> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="text"  class="" value="${c.mailId}" name="mailId"/>
+		</p>
+		
+		<p>
+			<label for="registerNo"></label> &nbsp&nbsp 
+			<input type="hidden"  class="" value="${c.registerNo}" name="registerNo"/>
+		</p>
+		<p>
+			<label for="abouthim">About You:</label><br/>
+			<textarea id="articleContent" class=""  cols="80" rows="5" name="abouthim">${c.abouthim}</textarea>
+		</p>
+		<p>
+			<label for="a"></label><br/>
+			<input type="hidden"  class="" value="${c.id}" name="a"/>
+		</p>
+		<p>
+		<label>Add your Website Links here</label></p>
+		<p>
+			<label for="fb">FaceBook :</label> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+			<input type="text"  class="" value="http://${c.fb}" name="fb"/>
+		</p>
+		<p>
+			<label for="bloger">Blogger:</label> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="text"  class="" value="http://${c.blogger}" name="blogger"/>
+		</p>
+		<p>
+			<label for="twitter">Twitter:</label> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="text"  class="" value="http://${c.twitter}" name="twitter"/>
+		</p>
+		
+		<p>
+		<input type="submit" name="submit" value="SaveChanges"  />
+		</p>
+		
+		
+
+</fieldset>
+#{/form}	

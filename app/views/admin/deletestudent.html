@@ -1,0 +1,38 @@
+#{extends 'admin.html'   /}
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+			<section class="column width6 first">
+				<h3>Article Tables</h3>
+					
+					<table class="display stylized" id="example">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Register_No</th>
+								<th>Date & Time</th>
+							</tr>
+						</thead>
+						<tbody>
+					#{list items:account, as:'show'}
+							<tr class="gradeX">
+								<td><a href="@{admin.retriveaccounts(show)}">${show.name}</td>
+								<td>${show.registerNo}</td>
+								<td class="center">${show.createdAt}</td>
+							</tr>
+					#{/list}			
+						</tbody>
+						<tfoot>
+							<tr>
+								<th>Name</th>
+								<th>Register_No</th>
+								<th>Date & Time</th>
+							</tr>
+						</tfoot>
+					</table>
+					<div class="clear">&nbsp;</div>
+			</section>
+		</div>
+	</div>
+					

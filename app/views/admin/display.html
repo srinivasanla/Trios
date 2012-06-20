@@ -1,0 +1,182 @@
+	#{extends 'admin.html'  /}
+	<head>
+	<script type="text/javascript" src="js/jquery.wysiwyg.min.js"></script>
+	<script type="text/javascript">
+$(document).ready(function(){
+	
+	/* setup navigation, content boxes, etc... */
+	Administry.setup();
+	
+	/* progress bar animations - setting initial values */
+	Administry.progress("#progress1", 1, 6);
+	
+	// validate form on keyup and submit
+	var validator = $("#sampleform").validate({
+		rules: {
+			firstname: "required",
+			lastname: "required",
+			username: {
+				required: true,
+				minlength: 2
+			},
+			password: {
+				required: true,
+				minlength: 5
+			},
+			password_confirm: {
+				required: true,
+				minlength: 5,
+				equalTo: "#password"
+			},
+			email: {
+				required: true,
+				email: true
+			},
+			dateformat: "required",
+			terms: "required"
+		},
+		messages: {
+			firstname: "Enter your firstname",
+			lastname: "Enter your lastname",
+			username: {
+				required: "Enter a username",
+				minlength: jQuery.format("Enter at least {0} characters")
+			},
+			password: {
+				required: "Provide a password",
+				rangelength: jQuery.format("Enter at least {0} characters")
+			},
+			password_confirm: {
+				required: "Repeat your password",
+				minlength: jQuery.format("Enter at least {0} characters"),
+				equalTo: "Enter the same password as above"
+			},
+			email: {
+				required: "Please enter a valid email address",
+				minlength: "Please enter a valid email address"
+			},
+			dateformat: "Choose your preferred dateformat",
+			terms: " "
+		},
+		// the errorPlacement has to take the layout into account
+		errorPlacement: function(error, element) {
+			error.insertAfter(element.parent().find('label:first'));
+		},
+		// specifying a submitHandler prevents the default submit, good for the demo
+		submitHandler: function() {
+			alert("Data submitted!");
+		},
+		// set new class to error-labels to indicate valid fields
+		success: function(label) {
+			// set &nbsp; as text for IE
+			label.html("&nbsp;").addClass("ok");
+		}
+	});
+	
+	// propose username by combining first- and lastname
+	$("#username").focus(function() {
+		var firstname = $("#firstname").val();
+		var lastname = $("#lastname").val();
+		if(firstname && lastname && !this.value) {
+			this.value = firstname + "." + lastname;
+		}
+	});
+	
+	// html textbox editor
+	$('.wysiwyg').wysiwyg({
+		controls: {
+			strikeThrough : { visible : true },
+			underline     : { visible : true },
+
+			justifyLeft   : { visible : true },
+			justifyCenter : { visible : true },
+			justifyRight  : { visible : true },
+			justifyFull   : { visible : true },
+
+			indent  : { visible : true },
+			outdent : { visible : true },
+
+			subscript   : { visible : true },
+			superscript : { visible : true },
+
+			undo : { visible : true },
+			redo : { visible : true },
+
+			insertOrderedList    : { visible : true },
+			insertUnorderedList  : { visible : true },
+			insertHorizontalRule : { visible : true },
+
+			h4: {
+				  visible: true,
+				  className: 'h4',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h4>' : 'h4'],
+				  tags: ['h4'],
+				  tooltip: 'Header 4'
+			},
+			h5: {
+				  visible: true,
+				  className: 'h5',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h5>' : 'h5'],
+				  tags: ['h5'],
+				  tooltip: 'Header 5'
+			},
+			h6: {
+				  visible: true,
+				  className: 'h6',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h6>' : 'h6'],
+				  tags: ['h6'],
+				  tooltip: 'Header 6'
+			},
+
+			cut   : { visible : true },
+			copy  : { visible : true },
+			paste : { visible : true },
+			html  : { visible: true }
+		}
+	}); 
+	
+	// date input fallback check
+	Administry.dateInput('#datepick'); 
+
+});
+</script>
+</head>
+
+
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">					
+
+					
+					<form id="sampleform" method="post" action="#">
+					<fieldset>
+							
+							<p>
+								<label for="input2">Article Title:</label>
+								<p>${art.title}</p>
+							
+							</p>
+								<label for="input2">Article Category:</label><br/>
+								<p>${art.categoryName}</p>
+							
+							<p>
+								
+							</p>
+							<p>
+								<label for="datepick">Related Tags:</label><br/>
+								<p>${art.tagName}</p>
+								
+							</p>
+							<p>
+								<label for="wysiwyg">Article Content:</label><br/>
+								<p>${art.articleContent.raw()}		
+							</p>
+							
+				
+					</fieldset>
+						

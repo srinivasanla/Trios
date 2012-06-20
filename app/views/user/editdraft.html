@@ -1,0 +1,193 @@
+#{extends 'user.html'  /}
+<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><a href="@{user.index(c.id)}"><font color="white">E-Mags</font></a><!--<span>Administry</span> demo--><h4>A Premium Magazine	</h4></div>
+			<!-- Top navigation -->
+			<div id="topnav">
+				
+				Logged in as <b>${c.name}</b>
+				<span>|</span> <a href="@{user.passcheck(c.id)}">Settings</a>
+				<span>|</span> <a href="@{user.logout(c)}">Logout</a><br />
+				
+			</div>
+			<!-- End of Top navigation -->
+			<!-- Main navigation -->
+			<nav id="menu">
+				<ul class="sf-menu">
+					<li class="current"><a href="@{user.index(c.id)}">DashBoard</a></li>
+					
+					
+					<li>
+						<a href="#">Articles</a>
+						<ul>
+							<li>
+								<a href="#">Sample Article</a>
+							</li>
+							<li>
+								<a href="#">New Article</a>
+								<ul>
+									<li><a href="@{user.uploadarticle(c.id)}">Upload Article</a></li>
+									<li><a href="@{user.article(c.id)}">Compose Article</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Your Archieves</a>
+						<ul>
+							<li>
+								<a href="@{user.published(c.id)}">Published</a>
+							</li>
+							<li>
+								<a href="@{user.draft(c.id)}">Drafts</a>
+							</li>
+							<li>
+								<a href="@{user.posted(c.id)}">Posted</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			<aside><b><a href="@{user.passcheck(c.id)}">Basic Info</a></b></aside>
+			
+			<!-- End of Aside links -->
+		</div>
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>Dashboard</h1>
+			<!-- Quick search box -->
+			#{form @user.search()}<input class="" type="text" value="Enter Article Name to search" id="q" name="keyword" />
+							<input class="" type="hidden" value="${c.id}"  name="a" />
+			#{/form}
+		</div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">
+
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.wysiwyg.min.js'}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	/* setup navigation, content boxes, etc... */
+	Administry.setup();
+	
+	// html textbox editor
+	$('.wysiwyg').wysiwyg({
+		controls: {
+			strikeThrough : { visible : true },
+			underline     : { visible : true },
+
+			justifyLeft   : { visible : true },
+			justifyCenter : { visible : true },
+			justifyRight  : { visible : true },
+			justifyFull   : { visible : true },
+
+			indent  : { visible : true },
+			outdent : { visible : true },
+
+			subscript   : { visible : true },
+			superscript : { visible : true },
+
+			undo : { visible : true },
+			redo : { visible : true },
+
+			insertOrderedList    : { visible : true },
+			insertUnorderedList  : { visible : true },
+			insertHorizontalRule : { visible : true },
+
+			h4: {
+				  visible: true,
+				  className: 'h4',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h4>' : 'h4'],
+				  tags: ['h4'],
+				  tooltip: 'Header 4'
+			},
+			h5: {
+				  visible: true,
+				  className: 'h5',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h5>' : 'h5'],
+				  tags: ['h5'],
+				  tooltip: 'Header 5'
+			},
+			h6: {
+				  visible: true,
+				  className: 'h6',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h6>' : 'h6'],
+				  tags: ['h6'],
+				  tooltip: 'Header 6'
+			},
+
+			cut   : { visible : true },
+			copy  : { visible : true },
+			paste : { visible : true },
+			html  : { visible: true }
+		}
+	}); 
+	
+	// date input fallback check
+	Administry.dateInput('#datepick'); 
+
+});
+</script>
+
+<h3></h3>
+<div class="box box-info">Edit Your Article Here</div>
+#{ form @user.articlepost() }
+
+<fieldset>
+		<legend>Text fields</legend>
+		<p>
+			<label for="title">Article Title:</label><br/>
+			<input type="text"   value="${art.title}" name="title"/>
+		</p>
+		<p>
+			<label for="departmentName">Article Department:</label><br/>
+			<input type="text"   value="${art.departmentName}" name="departmentName"/>
+		<p>
+		
+		<p>
+			<label for="categoryName">Article Category:</label><br/>
+			<input type="text"   value="${art.categoryName}" name="categoryName"/>
+		<p>
+			<label for="author"></label>
+			<input type="hidden" value="${art.author}" name="author">
+		</p>
+		<p>
+			<label for="accountId"></label><br/>
+			<input type="hidden"  class="" value="${c.id}" name="accountId"/>
+		</p>
+		<p>
+			<label for="tagName">Related Tags:</label><br/>
+			<input type="text" id="datepick" class="" value="" name="tagName"/>
+		</p>
+		<p>
+			<label for="articleContent">Article Content:</label><br/>
+			<textarea id="articleContent" class="full wysiwyg"   cols="1000" rows="12" value="${art.articleContent}" name="articleContent">${art.articleContent.raw()}</textarea>
+		</p>
+		<p>
+		<label>Please select an option:</label><br/>
+		<input type="radio" name="enabled" value="1" />To Publish<br />
+		<input type="radio" name="enabled" value="0" />To Draft</br>
+		</p>
+		
+		<input type="submit" name="submit" value="Submit"  />
+		<input type="reset" name="reset" value="Reset" />
+	
+
+</fieldset>
+#{/form}	

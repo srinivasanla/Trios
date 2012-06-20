@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from zj.rs/templates/administry/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 29 Feb 2012 13:43:38 GMT -->
+<head>
+<meta charset="utf-8" />
+<title>E-Mags(Moderator)</title>
+<meta name="description" content="Administry - Admin Template by Zoran Juric" />
+<meta name="keywords" content="Admin,Template" />
+<!-- We need to emulate IE7 only when we are to use excanvas -->
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<![endif]-->
+<!-- Favicons --> 
+
+<!-- Main Stylesheet --> 
+<link rel="stylesheet" href="@{'public/stylesheets/user/style.css'}" type="text/css" />
+<!-- Colour Schemes
+Default colour scheme is blue. Uncomment prefered stylesheet to use it.
+<link rel="stylesheet" href="css/brown.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="css/gray.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="css/green.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/pink.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="css/red.css" type="text/css" media="screen" />
+-->
+<!-- Your Custom Stylesheet --> 
+<link rel="stylesheet" href="@{'public/stylesheets/user/custom.css'}" type="text/css" />
+<!--swfobject - needed only if you require <video> tag support for older browsers -->
+<script type="text/javascripts" src="@{'public/javascripts/user/swfobject.js'}"></script>
+<!-- jQuery with plugins -->
+<script type="text/javascript" src="@{'public/javascripts/user/jquery-1.4.2.min.js'}"></script>
+<!-- Could be loaded remotely from Google CDN : <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.ui.core.min.js'}"></script>
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.ui.widget.min.js'}"></script>
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.ui.tabs.min.js'}"></script>
+<!-- jQuery tooltips -->
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.tipTip.min.js'}"></script>
+<!-- Superfish navigation -->
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.superfish.min.js'}"></script>
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.supersubs.min.js'}"></script>
+<!-- jQuery form validation -->
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.validate_pack.js'}"></script>
+<!-- jQuery popup box -->
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.nyroModal.pack.js'}"></script>
+<!-- jQuery graph plugins -->
+<!--[if IE]><script type="text/javascript" src="js/flot/excanvas.min.js"></script><![endif]-->
+<script type="text/javascript" src="@{'public/javascripts/user/flot/jquery.flot.min.js'}"></script>
+<!-- Internet Explorer Fixes --> 
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" media="all" href="css/ie.css"/>
+<script src="js/html5.js"></script>
+<![endif]-->
+<!--Upgrade MSIE5.5-7 to be compatible with MSIE8: http://ie7-js.googlecode.com/svn/version/2.1(beta3)/IE8.js -->
+<!--[if lt IE 8]>
+<script src="js/IE8.js"></script>
+<![endif]-->
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	/* setup navigation, content boxes, etc... */
+	Administry.setup();
+	
+	/* progress bar animations - setting initial values */
+	Administry.progress("#progress1", 1, 5);
+	Administry.progress("#progress2", 2, 5);
+	Administry.progress("#progress3", 2, 5);
+
+	/* flot graphs */
+	var sales = [{
+		label: 'Total Paid',
+		data: [[1, 0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,900],[8,0],[9,0],[10,0],[11,0],[12,0]]
+	},{
+		label: 'Total Due',
+		data: [[1, 0],[2,0],[3,0],[4,0],[5,0],[6,422.10],[7,0],[8,0],[9,0],[10,0],[11,0],[12,0]]
+	}
+	];
+
+	var plot = $.plot($("#placeholder"), sales, {
+		bars: { show: true, lineWidth: 1 },
+		legend: { position: "nw" },
+		xaxis: { ticks: [[1, "Jan"], [2, "Feb"], [3, "Mar"], [4, "Apr"], [5, "May"], [6, "Jun"], [7, "Jul"], [8, "Aug"], [9, "Sep"], [10, "Oct"], [11, "Nov"], [12, "Dec"]] },
+		yaxis: { min: 0, max: 1000 },
+		grid: { color: "#666" },
+		colors: ["#0a0", "#f00"]			
+    });
+
+
+});
+</script>
+</head>
+<body>
+	<!-- Header -->
+							#{doLayout/}
+				<!-- Right column/section -->
+	<!-- End of Page content -->
+	
+	<!-- Page footer -->
+<footer id="bottom">
+		<div class="wrapper">
+			
+			<p>Copyright &copy; 2012 <b><a href="https://www.ibm.com/developerworks/mydeveloperworks/groups/service/html/communityview?communityUuid=e25a8e0b-bb61-4d16-a9e0-4f3ded24348f" >SASTRA UNIVERSITY-3iOs Group</a></b>
+		</div>
+	</footer>
+	<!-- End of Page footer -->
+	
+	<!-- Animated footer -->
+	<footer id="animated">
+		<ul>
+			<li><a href="@{user.index()}">HOME</a></li>
+			<li><a href="@{user.published}">Archieves</a></li>
+			<li><a href="#">Reports</a></li>
+			<li><a href="#">Users</a></li>
+			<li><a href="#">Media</a></li>
+			<li><a href="#">Events</a></li>
+			<li><a href="#">Newsletter</a></li>
+			<li><a href="#">Settings</a></li>
+		</ul>
+	</footer>
+	
+	
+	<!-- End of Animated footer -->
+	
+	<!-- Scroll to top link -->
+	<a href="#" id="totop">^ scroll to top</a>
+
+<!-- Admin template javascript load -->
+<script type="text/javascript" src="@{'public/javascripts/user/administry.js'}"></script>
+</body>
+
+<!-- Mirrored from zj.rs/templates/administry/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 29 Feb 2012 13:43:54 GMT -->
+</html>

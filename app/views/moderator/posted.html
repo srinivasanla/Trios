@@ -1,0 +1,190 @@
+#{extends 'moderator.html'   /}
+
+<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><a href="@{moderator.index(c.id)}"><font color="white">E-Mags</font></a><!--<span>Administry</span> demo--><h4>A Premium Magazine	</h4></div>
+			<!-- Top navigation -->
+			<div id="topnav">
+
+				Logged in as <b>Moderator-${c.name}</b>
+				<span>|</span> <a href="@{moderator.profile(c.id)}">Settings</a>
+				<span>|</span> <a href="#">Logout</a><br />
+				
+			</div>
+			<!-- End of Top navigation -->
+			<!-- Main navigation -->
+			<nav id="menu">
+				<ul class="sf-menu">
+					<li class="current"><a href="@{moderator.index(c.id)}">New Arrivels</a></li>
+					<li><a href="@{moderator.allposted(c.id)}">All Posted Articles</a></li>
+					<li><a href="@{moderator.allpublished(c.id)}">All Pubished Article</a></li>
+					<li>
+						<a href="#">Articles</a>
+						<ul>
+							<li>
+								<a href="#">Sample Article</a>
+							</li>
+							<li>
+								<a href="#">New Article</a>
+								<ul>
+									<li><a href="@{moderator.upload(c.id)}">Upload Article</a></li>
+									<li><a href="@{moderator.article(c.id)}">Compose Article</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Your Archieves</a>
+						<ul>
+							<li>
+								<a href="@{moderator.published(c.id)}">Published</a>
+							</li>
+							<li>
+								<a href="@{moderator.draft(c.id)}">Drafts</a>
+							</li>
+							<li>
+								<a href="@{moderator.posted(c.id)}">Posted</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			<aside><b><a href="@{moderator.profile(c.id)}">Basic Info</a></b></aside>
+			
+			<!-- End of Aside links -->
+		</div>
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>Dashboard</h1>
+			<!-- Quick search box -->
+			#{form @moderator.search()}<input class="" type="text" value="Enter Article Name to search " id="q" name="keyword" />
+							<input class="" type="hidden" value="  name="a" />
+			#{/form}
+		</div>
+	</div>
+	<!-- End of Page title -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+			<section class="column width6 first">
+				<h3>Article Tables</h3>
+					
+					<table class="display stylized" id="example">
+						<thead>
+							<tr>
+								<th>Article Title</th>
+								<th>Category</th>
+								<th>Date & Time</th>
+							</tr>
+						</thead>
+						<tbody>
+						#{list items:art, as:'show'}
+							<td class="title">
+							<div>
+								<b>${show.title}</b>
+								<br>
+								<a href="@{moderator.display(show)}">show</a> &middot; <a href="@{moderator.delete(show.id)}">Delete</a>
+								</br>
+								</div>
+								</td>
+								<td>${show.categoryName}</td>
+								<td>${show.createdAt}</td>
+							</tr>
+						#{/list}
+						</tbody>
+						<tfoot>
+							<tr>
+								<th>Article Title</th>
+								<th>Category</th>
+								<th>Date & Tsime</th>
+							</tr>
+						</tfoot>
+					</table>
+					<div class="clear">&nbsp;</div>
+			</section>
+		</div>
+	</div>
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+		<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">
+					<div class="colgroup leading
+				</div>
+					
+					<div class="clear">&nbsp;</div>
+				
+				</section>
+				<!-- End of Left column/section -->
+				
+				<aside class="column width2">
+					<div id="rightmenu">
+						<header>
+							<h3>Your Account</h3>
+						</header>
+						<dl class="first">
+							<dt><img width="16" height="16" alt="" src="@{'public/images/user/key.png'}"></dt>
+							<dd><a href="#">Guide To ur first article</a></dd>
+							<dd class="last">Free Account.</dd>
+							
+							<dt><img width="16" height="16" alt="" src="@{'public/images/user/help.png'}"></dt>
+							<dd><a href="#">Support</a></dd>
+							<dd class="last">Documentation and FAQ</dd>
+						</dl>
+					</div>
+					<div class="content-box">
+						<header>
+							<h3></h3>
+						</header>
+						<section>
+							
+						</section>
+					</div>
+				</aside>
+				<!-- End of Right column/section -->
+				
+		</div>
+		<!-- End of Wrapper -->
+	</div>
+					

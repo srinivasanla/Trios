@@ -1,0 +1,21 @@
+#{extends 'main.html' /}
+#{set side:'side post' /}
+#{set pagetitle:'Bio-Technology' /}		
+<div id="sidebar_left_bottom"></div>
+            <div id="container">
+                <div class="post">
+					#{list items:article, as:'show'}
+                	<h2><a href="@{application.fullwidth(show.id)}">${show.title}</a></h2>
+                    <span class="post_categories"><a href="#">Travelling</a>, <a href="#">Hobby</a>, <a href="#">Photography</a>.</span>
+                    <span class="post_date">${show.createdAt} by <a href="@{application.profile(show.author)}">${show.author}</a>.</span>
+                    <div class="clear"></div>
+                    #{/list}
+                    
+                    
+                </div>
+                <ul class="just_pagination">
+                	<li class="current"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                </ul>
+            </div>

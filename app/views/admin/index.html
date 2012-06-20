@@ -1,0 +1,35 @@
+#{extends 'admin.html'   /}
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+			<section class="column width6 first">
+				<h3>Recently Signedup Users</h3>
+					
+					<table class="display stylized" id="example">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Register_No</th>
+								<th>Date & Time</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="gradeX">
+							#{list items:acc, as:'show'}
+
+								<td><a href="@{admin.retriveaccount(show)}">${show.name}</td>
+
+								<td>${show.registerNo}</td>
+								<td class="center">${show.createdAt}</td>
+							</tr>
+							#{/list}
+							
+						</tbody>
+						
+					</table>
+					<div class="clear">&nbsp;</div>
+			</section>
+		</div>
+	</div>
+					

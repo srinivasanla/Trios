@@ -1,0 +1,111 @@
+#{extends 'user.html' /}
+#{set loggedin: 'loggedin'   /}
+
+
+<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><a href="@{user.index(c.id)}"><font color="white">E-Mags</font></a><!--<span>Administry</span> demo--><h4>A Premium Magazine	</h4></div>
+			<!-- Top navigation -->
+			<div id="topnav">
+				
+				Logged in as <b>${c.name}</b>
+				<span>|</span> <a href="@{user.passcheck(c.id)}">Settings</a>
+				<span>|</span> <a href="@{user.logout(c)}">Logout</a><br />
+				
+			</div>
+			<!-- End of Top navigation -->
+			<!-- Main navigation -->
+			<nav id="menu">
+				<ul class="sf-menu">
+					<li class="current"><a href="@{user.index(c.id)}">DashBoard</a></li>
+					
+					
+					<li>
+						<a href="#">Articles</a>
+						<ul>
+							<li>
+								<a href="#">Sample Article</a>
+							</li>
+							<li>
+								<a href="#">New Article</a>
+								<ul>
+									<li><a href="@{user.upload(c.id)}">Upload Article</a></li>
+									<li><a href="@{user.article(c.id)}">Compose Article</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Your Archieves</a>
+						<ul>
+							<li>
+								<a href="@{user.published(c.id)}">Published</a>
+							</li>
+							<li>
+								<a href="@{user.draft(c.id)}">Drafts</a>
+							</li>
+							<li>
+								<a href="@{user.posted(c.id)}">Posted</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			<aside><b><a href="@{user.passcheck(c.id)}">Basic Info</a></b></aside>
+			
+			<!-- End of Aside links -->
+		</div>
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>Dashboard</h1>
+			<!-- Quick search box -->
+			#{form @user.search()}<input class="" type="text" value="Enter Article Name to search" id="q" name="keyword" alt=""/>
+							<input class="" type="hidden" value="${c.id}"  name="a" />
+			#{/form}
+		</div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+								
+		<!-- Wrapper -->
+		<div class="wrapper">
+		<h3>Welcome, <a href="@{user.profile(c.id)}"> ${c.name}</a></h3>
+		
+				<!-- Left column/section -->
+				<section class="">
+				
+						<div class="colgroup leading">
+						<div class="">
+						
+
+					</div>
+						</div>
+						
+					
+					<div class="colgroup leading">
+						<div class="column width6">
+						<p><font face="timesnewrommen" color="grey"><h3>E-Mags,</h3></font></p>
+						<font size="4" face="timesnewrommen" color="grey">
+							Provides a good workbench to students who are free to post there ideas in the form of ARTICLE.
+							Through E-Mags you can read,write,comment articles so that every one can share their ideas and 
+							get more suggesions . Thus E-Mags  is a place where many innovative things are found and shown to the people
+							who are interested in major fields .So friends use this place to your innovative ideas.  
+							
+							
+						</font>
+						<div><h5> </h5></div>
+							
+						</div>
+					<div class="column width0">
+
+					</div>
+					</div>
+			

@@ -1,0 +1,113 @@
+#{extends 'admin.html'  /}
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">
+
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.wysiwyg.min.js'}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	/* setup navigation, content boxes, etc... */
+	Administry.setup();
+	
+	// html textbox editor
+	$('.wysiwyg').wysiwyg({
+		controls: {
+			strikeThrough : { visible : true },
+			underline     : { visible : true },
+
+			justifyLeft   : { visible : true },
+			justifyCenter : { visible : true },
+			justifyRight  : { visible : true },
+			justifyFull   : { visible : true },
+
+			indent  : { visible : true },
+			outdent : { visible : true },
+
+			subscript   : { visible : true },
+			superscript : { visible : true },
+
+			undo : { visible : true },
+			redo : { visible : true },
+
+			insertOrderedList    : { visible : true },
+			insertUnorderedList  : { visible : true },
+			insertHorizontalRule : { visible : true },
+
+			h4: {
+				  visible: true,
+				  className: 'h4',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h4>' : 'h4'],
+				  tags: ['h4'],
+				  tooltip: 'Header 4'
+			},
+			h5: {
+				  visible: true,
+				  className: 'h5',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h5>' : 'h5'],
+				  tags: ['h5'],
+				  tooltip: 'Header 5'
+			},
+			h6: {
+				  visible: true,
+				  className: 'h6',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h6>' : 'h6'],
+				  tags: ['h6'],
+				  tooltip: 'Header 6'
+			},
+
+			cut   : { visible : true },
+			copy  : { visible : true },
+			paste : { visible : true },
+			html  : { visible: true }
+		}
+	}); 
+	
+	// date input fallback check
+	Administry.dateInput('#datepick'); 
+
+});
+</script>
+
+<h3>Profile Page</h3>
+<div class="box box-info">Here is the place to say about yourself</div>
+#{ form @admin.profileupdate() }
+
+<fieldset>
+		<legend>Text fields</legend>
+		<p>
+			<label for="username">Username:</label> &nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="text" id="datepick" class="" value="Admin" name="username"/>
+		</p>
+		
+		<p>
+			<label for="password">Password:</label> &nbsp&nbsp&nbsp&nbsp  
+			<input type="password"  class="" value="Admin" name="password"/>
+		</p>
+		
+		<p>
+			<label for="locality">Locality:</label> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="text"  class="" value="local" name="locality"/>
+		</p>
+		<p>
+			<label for="mailId">MailId:</label> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="text"  class="" value="admi@mail.com" name="mailId"/>
+		</p>
+				
+		<p>
+			<label for="abouthim">About You:</label><br/>
+			<textarea id="abouthim" class=""  cols="80" rows="5" name="abouthim"></textarea>
+		</p>
+		<input type="submit" name="submit" value="SaveChanges"  />
+		
+		
+
+</fieldset>
+#{/form}	

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from zj.rs/templates/administry/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 29 Feb 2012 13:43:38 GMT -->
+<head>
+<meta charset="utf-8" />
+<title>E-Mags(Admin)</title>
+<meta name="description" content="Administry - Admin Template by Zoran Juric" />
+<meta name="keywords" content="Admin,Template" />
+<!-- We need to emulate IE7 only when we are to use excanvas -->
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<![endif]-->
+<!-- Favicons --> 
+<!-- Main Stylesheet --> 
+<link rel="stylesheet" href="@{'public/stylesheets/user/style.css'}" type="text/css" />
+<!-- Colour Schemes
+Default colour scheme is blue. Uncomment prefered stylesheet to use it.
+<link rel="stylesheet" href="css/brown.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="css/gray.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="css/green.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/pink.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="css/red.css" type="text/css" media="screen" />
+-->
+<!-- Your Custom Stylesheet --> 
+<link rel="stylesheet" href="@{'public/stylesheets/user/custom.css'}" type="text/css" />
+<!--swfobject - needed only if you require <video> tag support for older browsers -->
+<script type="text/javascripts" src="@{'public/javascripts/user/swfobject.js'}"></script>
+<!-- jQuery with plugins -->
+<script type="text/javascript" src="@{'public/javascripts/user/jquery-1.4.2.min.js'}"></script>
+<!-- Could be loaded remotely from Google CDN : 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.ui.core.min.js'}"></script>
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.ui.widget.min.js'}"></script>
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.ui.tabs.min.js'}"></script>
+<!-- jQuery tooltips -->
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.tipTip.min.js'}"></script>
+<!-- Superfish navigation -->
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.superfish.min.js'}"></script>
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.supersubs.min.js'}"></script>
+<!-- jQuery form validation -->
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.validate_pack.js'}"></script>
+<!-- jQuery popup box -->
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.nyroModal.pack.js'}"></script>
+<!-- jQuery graph plugins -->
+<!--[if IE]><script type="text/javascript" src="js/flot/excanvas.min.js"></script><![endif]-->
+<script type="text/javascript" src="@{'public/javascripts/user/flot/jquery.flot.min.js'}"></script>
+<!-- Internet Explorer Fixes --> 
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" media="all" href="css/ie.css"/>
+<script src="js/html5.js"></script>
+<![endif]-->
+<!--Upgrade MSIE5.5-7 to be compatible with MSIE8: http://ie7-js.googlecode.com/svn/version/2.1(beta3)/IE8.js -->
+<!--[if lt IE 8]>
+<script src="js/IE8.js"></script>
+<![endif]-->
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	/* setup navigation, content boxes, etc... */
+	Administry.setup();	
+});
+</script>
+</head>
+<body>
+	<!-- Header -->
+	<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><a href="@{admin.index()}"><font color="white">E-Mags</font></a><!--<span>Administry</span> demo--><h4>A Premium Magazine	</h4></div>
+			
+			<!-- Top navigation -->
+			<div id="topnav">
+				
+				Logged in as <b>Admin</b>
+				<span>|</span> <a href="@{admin.profile()}">Settings</a>
+				<span>|</span> <a href="@{application.index()}">Logout</a><br />
+				
+			</div>
+			<!-- End of Top navigation -->
+			<!-- Main navigation -->
+			<nav id="menu">
+				<ul class="sf-menu">
+					<li class="current"><a href="@{admin.index}">New Users</a></li>
+					<li><a href="@{admin.allusers()}">All Users</a></li>
+					<li><a href="@{admin.allposted}">All Posted Articles</a></li>
+					<li><a href="@{admin.allpublished}">All Pubished Article</a></li>
+					<li><a href="@{admin.regstudent}">Add Student</a></li>
+					<li><a href="@{admin.deletestudent}">Deleted Student</a></li>
+					<li>
+						<a href="#">Articles</a>
+						<ul>
+							<li>
+								<a href="#">Sample Article</a>
+							</li>
+							<li>
+								<a href="#">New Article</a>
+								<ul>
+									<li><a href="@{admin.upload}">Upload Article</a></li>
+									<li><a href="@{admin.article}">Compose Article</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Your Archieves</a>
+						<ul>
+							<li>
+								<a href="@{admin.published}">Published</a>
+							</li>
+							<li>
+								<a href="@{admin.draft}">Drafts</a>
+							</li>
+							<li>
+								<a href="@{admin.posted}">Posted</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			<aside><b><a href="@{admin.profile()}">Basic Info</a></b></aside>
+			
+			<!-- End of Aside links -->
+		</div>
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>Dashboard</h1>
+			<!-- Quick search box -->
+			#{form @admin.search()}<input class="" type="text" value="Enter Article Name to search " id="q" name="keyword" />
+							<input class="" type="hidden" value="  name="a" />
+			#{/form}
+		</div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">
+					<div class="colgroup leading
+						#{doLayout/}
+					</div>
+					
+					<div class="clear">&nbsp;</div>
+				
+				</section>
+				<!-- End of Left column/section -->
+				
+				<!-- Right column/section -->
+				<aside class="column width2">
+					<div id="rightmenu">
+						<header>
+							<h3>Your Account</h3>
+						</header>
+						<dl class="first">
+							<dt><img width="16" height="16" alt="" src="@{'public/images/user/key.png'}"></dt>
+							<dd><a href="#">Guide To ur first article</a></dd>
+							<dd class="last">Free Account.</dd>
+							
+							<dt><img width="16" height="16" alt="" src="@{'public/images/user/help.png'}"></dt>
+							<dd><a href="#">Support</a></dd>
+							<dd class="last">Documentation and FAQ</dd>
+						</dl>
+					</div>
+					<div class="content-box">
+						<header>
+							<h3></h3>
+						</header>
+						<section>
+							
+						</section>
+					</div>
+				</aside>
+				<!-- End of Right column/section -->
+				
+		</div>
+		<!-- End of Wrapper -->
+	</div>
+	<!-- End of Page content -->
+	
+	<!-- Page footer -->
+	<!-- Animated footer -->
+	<footer id="bottom">
+		<div class="wrapper">
+			<p>Copyright &copy; 2012 <b><a href="https://www.ibm.com/developerworks/mydeveloperworks/groups/service/html/communityview?communityUuid=e25a8e0b-bb61-4d16-a9e0-4f3ded24348f" >SASTRA UNIVERSITY-3iOs Group</a></b>
+		</div>
+	</footer>
+	<!-- End of Page footer -->
+	
+	<!-- Animated footer -->
+	<footer id="animated">
+		<ul>
+				<li><a href="@{admin.index()}">HOME</a></li>
+				<li><a href="@{admin.upload()}">All Users</a> &middot;</li>
+				<li><a href="@{admin.published}">All Articles</a> &middot;</li>
+				<li><a href="@{admin.posted()}">Posted Articles</a></li>
+				<li><a href="@{admin.regstudent()}">Add Student</a> &middot;</li>
+				<li><a href="#">Logout</a></li>
+		</ul>
+	</footer><!-- End of Animated footer -->
+	
+	<!-- Scroll to top link -->
+	<a href="#" id="totop">^ scroll to top</a>
+
+<!-- Admin template javascript load -->
+<script type="text/javascript" src="@{'public/javascripts/user/administry.js'}"></script>
+</body>
+
+<!-- Mirrored from zj.rs/templates/administry/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 29 Feb 2012 13:43:54 GMT -->
+</html>

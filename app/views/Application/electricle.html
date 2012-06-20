@@ -1,0 +1,37 @@
+ #{extends 'main.html' /}
+ #{set side:'side post' /}
+ #{set pagetitle:'Electricle' /}
+
+ <div id="sidebar_left_bottom"></div>
+            <div id="container">
+                
+				#{list items:article, as:'show'}
+                	<h2 class="color"><a href="@{application.fullwidth(show.id)}">${show.title}</a></h2>
+                    
+                    <span class="post_date">Posted on ${show.createdAt} by <a href="@{application.profile(show.author)}">${show.author}</a>.</span>
+					<div class="clear"></div>
+                    
+                    <div class="clear"></div>
+                    <p>${show.description}</p>
+                    <a href="post.html#comments" class="comments_link">Read all 56 comments.</a>
+                    <a href="@{application.fullwidth(show.id)}" class="button right"><span>Continue Reading</span></a>
+					<p>
+					<div class="post"></div>
+					</p>
+					<div class="clear"></div>
+					
+					<div class="clear"></div>
+				#{/list}
+				
+            </div>
+                     <div class="clear"></div>      
+                    <p></p>
+               <div>
+                <ul class="just_pagination">
+                	<li class="current"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+					<li><a href="#">....</a></li>
+                </ul>
+				</div>
+            

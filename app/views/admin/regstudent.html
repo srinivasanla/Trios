@@ -1,0 +1,48 @@
+	#{extends 'admin.html'  /}
+	
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">					
+
+					<h3></h3>
+					<div class="box box-info">You can add the college students here</div>
+					
+					#{ form @admin.registerstudent() }
+					<fieldset>
+							<legend>Text fields</legend>
+							<p>
+							<label for="studentName">Student Name:</label><br/>
+							<input type="text" id="input2" class="half title" value="" name="studentName"/>
+							<span class="color">#{error 'studentName' /}</span>
+							</p>
+							<p>
+							<label for="registerNo">Student registerNo:</label><br/>
+							<input type="text" id="input2" class="half title" value="" name="registerNo"/>
+							<span class="color">#{error 'registeraNo' /}</span>
+							</p>
+							<p>
+							<label for="year">year of study:</label><br/>
+							<input type="text" id="input2" class="half title" value="" name="year"/>
+							<span class="color">#{error 'year' /}</span>
+							</p>
+							<p>
+							<label for="departmentName">Department:</label><br/>
+							<input type="text" id="input2" class="half title" value="" name="departmentName"/>
+							<span class="color">#{error 'departmentName' /}</span>
+							</p>
+							<p>
+						*{	<label for="haveAccount">account:</label><br/>
+							<input type="text" id="input2" class="half title" value="" name="haveAccount"/>
+							</p>}*
+							
+							
+							
+								
+							<input type="submit" name="submit" value="Submit"  />
+							<input type="reset" name="reset" value="Reset" />
+							
+					
+					</fieldset>
+					#{/form}	

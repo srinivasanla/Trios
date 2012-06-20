@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from ejuras.com/themeforest/MINDSET_CYAN/blog.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 23 May 2012 18:53:17 GMT -->
+<head>
+	<title>Mindset</title>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+	<link type="text/css" href="@{'public/stylesheets/styles.css'}" rel="stylesheet" />
+    <link rel="stylesheet" href="@{'public/stylesheets/jquery.fancybox-1.3.1.css'}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="@{'public/stylesheets/nivo-slider.css'}" type="text/css" media="screen" />
+    <script type="text/javascript" src="../../../ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="@{'public/javascripts/jquery.nivo.slider.pack.js'}"></script>
+	<script type="text/javascript" src="@{'public/javascripts/cufon-yui.js'}"></script>  
+	<script type="text/javascript" src="@{'public/javascripts/Fontin_Sans_Rg_400-Fontin_Sans_Rg_700.font.js'}"></script> 
+    <script type="text/javascript" src="@{'public/javascripts/jquery.fancybox-1.3.1.pack.js'}"></script>
+    <script type="text/javascript" src="@{'public/javascripts/custom.js'}"></script>
+	<!--[if lt IE 7]>
+    	<link type="text/css" href="css/stylesIE6.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/DD_belatedPNG_0.0.8a-min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="main">
+    	<div id="head">
+    		<a href="@{application.index}" class="left"><img src="@{'public/images/logo.png'}" alt="Edification" /></a>
+            <span id="slogan"><b>A Premium Magizine</b></span>
+        </div>
+		#{if pagetitle}
+        <div id="page_header">
+        	<h1>#{get 'pagetitle' /}</h1>
+            <div class="single_header_title">
+            	<h5>Innovative IDEAS from Innovative MINDS!</h5>
+            </div>
+        </div>
+		#{/if}
+        <div id="content" class="sidebar_on_left">
+		 #{if side} 
+        	<div id="sidebar_left">
+            	<div class="widget">
+                	<h4>Categories</h4>
+                	<ul class="sidebar_list">
+                    	<li><a href="@{application.entertainment()}">Entertainments (2)</a></li>
+                        <li><a href="@{application.travel()}">Travel (4)</a></li>
+						<li><a href="@{application.culturals()}">Culturals (1)</a></li>
+                        <li class="current"><a href="@{application.technology()}">Technology (5)</a></li>
+						<li><a href="@{application.sports()}">Sports (3)</a></li>
+                        <li><a href="@{application.project()}">Projects & Researchs (2)</a></li>
+                    </ul>
+                </div>
+                <div class="widget archives">
+                	<h4>Best Article</h4>
+					#{list items:articles, as:'show' }
+                	<ul class="sidebar_list">
+						<li><a href="@{application.fullwidth(show.id)}">${show.title}</a></li>
+                    </ul>
+					#{/list}
+					
+                </div>
+                <div class="widget archives">
+                	<h4>Most Viewed</h4>
+                	
+                    	#{list items:articles, as:'show' }
+						<ul class="sidebar_list">
+						<li><a href="@{application.fullwidth(show.id)}">${show.title}</a></li>
+                    	</ul>
+						#{/list}
+                </div>
+            </div>
+		#{/if}
+           #{doLayout/}		
+            <div class="clear"></div>
+        </div>
+        <div id="footer">
+        	<div id="footer_arrow"></div>
+            <ul id="footer_nav">
+            	<li><a href="@{application.index}">Homepage</a></li>
+                <li><a href="@{application.login}">Log-in</a></li>
+                <li><a href="@{application.signup}">Sign-up</a></li>
+                <li><a href="@{application.feedback}">Feedback</a></li>
+                <li><a href="contact.html">Contacts</a></li>
+            </ul>
+            <div id="copyright">
+            	<span> 2012 <a href="@{application.index}">Mindset</a> - A Premium Magazine. All rights reserved.</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <ul id="nav">
+        	<li>
+            	<a href="@{application.index}"><span>HOMEPAGE</span></a>
+            </li>
+			
+            <li>
+            	<a href="#"><span>DEPARTMENTS</span></a>
+                <ul>
+                	<li><a href="@{application.computer()}">Computer Science</a></li>
+                    <li><a href="@{application.mechanical()}">Mechanicle</a></li>
+                    <li><a href="@{application.electricle()}">Electricle</a></li>
+					<li><a href="@{application.communication()}">Communication</a></li>
+					<li><a href="@{application.civil()}">Civil</a></li>
+                    <li><a href="@{application.bio()}">Bio-Technology</a></li>
+                </ul>
+            </li>
+			<li class="current">
+            	<a href="@{application.login}"><span>LOG-IN</span></a>
+            </li>
+            <li>
+            	<a href="@{application.signup}"><span>SIGNUP</span></a>
+            </li>
+			<li>
+			#{form @search()}
+				<input id="search" type="text" value="Search here" name="keyword" alt="Search" />
+			#{/form}
+			</li>
+        </ul>
+    </div>
+</body>
+
+
+</html>

@@ -1,0 +1,45 @@
+#{extends 'admin.html'   /}
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+			<section class="column width6 first">
+			#{form @searchstudent()}
+			<div id="searchbox">
+				<label for="keyword">Enter Register NO. to search:</label><br/>
+				<input id="search" class="ie6png" type="text" name="keyword" alt="Search" />
+			</div> 
+			#{/form}
+		
+					<h3>List of Students</h3>
+					
+					<table class="display stylized" id="example">
+						<thead>
+							<tr>
+								<th>Firstname</th>
+								<th>Register_No</th>
+								<th>Date & Time</th>
+							</tr>
+						</thead>
+						<tbody>
+					#{list items:acc, as:'show'}
+							<tr class="gradeX">
+								<td><a href="@{admin.retriveaccounts(show)}">${show.name}</a></td>
+								<td>${show.registerNo}</td>
+								<td class="center">${show.createdAt}</td>
+							</tr>
+					#{/list}			
+						</tbody>
+						<tfoot>
+							<tr>
+								<th>Firstname</th>
+								<th>Register_No</th>
+								<th>Date & Time</th>
+							</tr>
+						</tfoot>
+					</table>
+					<div class="clear">&nbsp;</div>
+			</section>
+		</div>
+	</div>
+					

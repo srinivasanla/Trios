@@ -1,0 +1,109 @@
+#{extends 'user.html'  /}					
+<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><a href="@{moderator.index}"><font color="white">E-Mags</font></a><!--<span>Administry</span> demo--><h4>A Premium Magazine	</h4></div>
+			<!-- Top navigation -->
+			<div id="topnav">
+				
+				Logged in as <b>${c.name}</b>
+				<span>|</span> <a href="#">Settings</a>
+				<span>|</span> <a href="#">Logout</a><br />
+				<small>You have <a href="@{moderator.message}" class="high"><b>1</b> new message!</a></small>
+			</div>
+			<!-- End of Top navigation -->
+			<!-- Main navigation -->
+			<nav id="menu">
+				<ul class="sf-menu">
+					<li class="current"><a href="@{moderator.index}">DashBoard</a></li>
+					
+					
+					<li>
+						<a href="#">Articles</a>
+						<ul>
+							<li>
+								<a href="#">Sample Article</a>
+							</li>
+							<li>
+								<a href="#">New Article</a>
+								<ul>
+									<li><a href="@{user.uploadarticle(c.id)}">Upload Article</a></li>
+									<li><a href="@{user.article(a.id)}">Compose Article</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Your Archieves</a>
+						<ul>
+							<li>
+								<a href="@{moderator.published}">Published</a>
+							</li>
+							<li>
+								<a href="@{moderator.draft}">Drafts</a>
+							</li>
+							<li>
+								<a href="@{moderator.posted}">Posted</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			<aside><b><a href="@{user.profile(c.id)}">Basic Info</a></b></aside>
+			
+			<!-- End of Aside links -->
+		</div>
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>Dashboard</h1>
+			<!-- Quick search box -->
+			#{form @user.search()}<input class="" type="text" value="Enter Article Name to search " id="q" name="keyword" />
+							<input class="" type="hidden" value="${c.id}"  name="a" />
+			#{/form}
+		</div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">
+
+					<div class="leading clearfix">
+						<div class="column width3 first">
+
+							<b>From: </b>
+							<div class="content-box corners">
+								<header>
+									<h3><img src="img/information.png" alt="" />Moderator</h3>
+								</header>
+								<section>
+									<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+									<table class="no-style full">
+										<tbody>
+											<tr>
+												<td><b>Users</b></td>
+												<td class="ta-right">11</td>
+											</tr>
+											<tr>
+												<td><b>Posts</b></td>
+												<td class="ta-right">22</td>
+											</tr>
+											<tr>
+												<td><b>Comments</b></td>
+												<td class="ta-right">332</td>
+											</tr>
+										</tbody>
+									</table>
+								</section>
+							</div>
+							
+						</div>
+					</div>

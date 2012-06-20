@@ -1,0 +1,41 @@
+#{extends 'main.html' /}
+#{set pagetitle:'Feedback' /}			
+<div id="content" class="no_sidebar"></div>
+			            <div class="comment_form">
+                    	
+              			<form action="#" method="post">
+               	    		<div>
+							<h3>Give Your Feedback here</h3>
+              	    			<label>Your Name:</label>
+              	        		<div class="input">
+              	        			<input type="text" id="name" name="name" maxlength="30" />
+              	        		</div>
+              	    		</div>
+               	    		<div>
+             	    			<label>Your E-mail:</label>
+              	        		<div class="input">
+              	        			<input type="text" id="email" name="email" maxlength="50" />
+              	        		</div>
+                  			</div>
+               				<div>
+               					<label>Your Feedback:</label>
+                   	    		<div class="textarea">
+                           			<div>
+                              			<textarea id="message" name="message" cols="40" rows="40"></textarea>
+                              		</div>
+                          		</div>
+               					<input type="hidden" id="ip" name="ip" value="To get IP" />
+               				</div>
+               				<div class="submit">
+							<div class="button">
+                            	<input type="submit" id="submit" name="submit" value="Submit" />
+							 </div>
+							 <div>
+							 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+							 </div>
+							 <div class="button">
+								<input type="reset" id="submit" name="submit" value="reset" />
+							 </div>
+                   		</div>
+           				</form>
+                    </div>

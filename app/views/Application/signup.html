@@ -1,0 +1,85 @@
+#{extends 'main.html' /}
+ #{set pagetitle:'Sign-up' /}
+		    <div id="container">
+            	<h1>Sign-up Page 
+				<p>
+				</p>
+				<small>Only SASTRA Students can Sign-up here.</small></h1>
+				<div class="widget">
+				</div>
+				<div id="contact_form">
+                	<div id="response"></div>
+                	#{form @Application.signupForm()}
+                		                	    <div>
+                	    	<label>Name</label>
+                	        <div class="input">
+                	        	<input type="text" id="name" value="${flash.name}" name="name" maxlength="30" />
+								 <span class="color">#{error 'name' /}</span>
+                	        </div>
+                	    </div>
+                	    <div>
+                	    	<label>Register No</label>
+                	        <div class="input">
+                	        	<input type="text" id="registerNo" value="${flash.registerNo}" name="registerNo" maxlength="50" />
+								 <span class="color"><h2 class="color">#{error 'registerNo' /}</h2></span>
+                	        </div>
+                    	</div>
+						<div>
+                	    	<label>Password</label>
+                	        <div class="input">
+                	        	<input type="password" id="password" value="${flash.password}" name="password" maxlength="50" />
+								 <span class="color">#{error 'password' /}</span>
+                	        </div>
+                    	</div>
+                    	<div>
+                	    	<label>Mail Id</label>
+                	        <div class="input">
+                	        	<input type="text" id="mailId" value="${flash.mailId}" name="mailId" maxlength="50" />
+								 <span class="color">#{error 'mailId' /}</span>
+                	        </div>
+                    	</div>
+						
+						<div>
+							<label for="code" >Please Type The Code Bellow:</label>
+                	    	<div class="input">
+							<p>
+                	        </div>
+								<img src="@{Application.captcha(randomID)}" /></p>
+                    	</div>
+						<p>
+						
+						<div>										
+							
+							<label for="code" ></label>
+							<div class="input">
+								<input type="text" id="email" name="email"  />
+							</div>
+   						</div>
+                    	
+                    	
+						<div>
+						&nbsp
+						</div>
+                    	<div class="submit">
+							<div class="button">
+                            	<input type="submit" id="submit" name="submit" value="Login" />
+							 </div>
+							 <div>
+							 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+							 </div>
+							 <div class="button">
+								<input type="reset" id="submit" name="submit" value="reset" />
+							 </div>
+                   		</div>
+						<div class="submit">
+                   			<div class="button">
+                        
+						     </div>
+                   		</div>
+						
+						
+            		#{/form}
+                </div>
+            </div>
+            
+       

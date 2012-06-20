@@ -1,0 +1,298 @@
+#{extends 'moderator.html'  /}
+
+
+
+<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><a href="@{moderator.index(c.id)}"><font color="white">E-Mags</font></a><!--<span>Administry</span> demo--><h4>A Premium Magazine	</h4></div>
+			<!-- Top navigation -->
+			<div id="topnav">
+
+				Logged in as <b>Moderator-${c.name}</b>
+				<span>|</span> <a href="@{moderator.profile(c.id)}">Settings</a>
+				<span>|</span> <a href="#">Logout</a><br />
+				
+			</div>
+			<!-- End of Top navigation -->
+			<!-- Main navigation -->
+			<nav id="menu">
+				<ul class="sf-menu">
+					<li class="current"><a href="@{moderator.index(c.id)}">New Arrivels</a></li>
+					<li><a href="@{moderator.allposted(c.id)}">All Posted Articles</a></li>
+					<li><a href="@{moderator.allpublished(c.id)}">All Pubished Article</a></li>
+					<li>
+						<a href="#">Articles</a>
+						<ul>
+							<li>
+								<a href="#">Sample Article</a>
+							</li>
+							<li>
+								<a href="#">New Article</a>
+								<ul>
+									<li><a href="@{moderator.upload(c.id)}">Upload Article</a></li>
+									<li><a href="@{moderator.article(c.id)}">Compose Article</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Your Archieves</a>
+						<ul>
+							<li>
+								<a href="@{moderator.published(c.id)}">Published</a>
+							</li>
+							<li>
+								<a href="@{moderator.draft(c.id)}">Drafts</a>
+							</li>
+							<li>
+								<a href="@{moderator.posted(c.id)}">Posted</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			<aside><b><a href="@{moderator.profile(c.id)}">Basic Info</a></b></aside>
+			
+			<!-- End of Aside links -->
+		</div>
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>Dashboard</h1>
+			<!-- Quick search box -->
+			#{form @moderator.search()}<input class="" type="text" value="Enter Article Name to search " id="q" name="keyword" />
+							<input class="" type="hidden" value="  name="a" />
+			#{/form}
+		</div>
+	</div>
+	<!-- End of Page title -->
+
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">
+
+<script type="text/javascript" src="@{'public/javascripts/user/jquery.wysiwyg.min.js'}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+
+$(document).ready(function(){
+	
+	/* setup navigation, content boxes, etc... */
+	Administry.setup();
+	
+	// html textbox editor
+	$('.wysiwyg').wysiwyg({
+		controls: {
+			strikeThrough : { visible : true },
+			underline     : { visible : true },
+
+			justifyLeft   : { visible : true },
+			justifyCenter : { visible : true },
+			justifyRight  : { visible : true },
+			justifyFull   : { visible : true },
+
+			indent  : { visible : true },
+			outdent : { visible : true },
+
+			subscript   : { visible : true },
+			superscript : { visible : true },
+
+			undo : { visible : true },
+			redo : { visible : true },
+
+			insertOrderedList    : { visible : true },
+			insertUnorderedList  : { visible : true },
+			insertHorizontalRule : { visible : true },
+
+			h4: {
+				  visible: true,
+				  className: 'h4',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h4>' : 'h4'],
+				  tags: ['h4'],
+				  tooltip: 'Header 4'
+			},
+			h5: {
+				  visible: true,
+				  className: 'h5',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h5>' : 'h5'],
+				  tags: ['h5'],
+				  tooltip: 'Header 5'
+			},
+			h6: {
+				  visible: true,
+				  className: 'h6',
+				  command: $.browser.msie ? 'formatBlock' : 'heading',
+				  arguments: [$.browser.msie ? '<h6>' : 'h6'],
+				  tags: ['h6'],
+				  tooltip: 'Header 6'
+			},
+
+			cut   : { visible : true },
+			copy  : { visible : true },
+			paste : { visible : true },
+			html  : { visible: true }
+		}
+	}); 
+	
+	// date input fallback check
+	Administry.dateInput('#datepick'); 
+
+});
+</script>
+
+<h3>Compose Article</h3>
+<div class="box box-info">You can Write your Article here</div>
+#{ form @moderator.postarticle() }
+
+<fieldset>
+		<legend>Text fields</legend>
+		<p>
+			<label for="title">Article Title:</label><br/>
+			<input type="text"   value="" name="title"/>
+		</p>
+		<p>
+			<label for="articleType">Article Type:</label><br/>
+			<select id="select" name="articleType">
+										<option value="">Select One</option>
+										<option value="education">Education</option>
+										<option value="entertainment">Entertainment</option>
+										<option value="travel">Travel</option>
+										<option value="cultural">Cultural</option>
+										<option value="sports">Sports</option>
+										<option value="technology">Technology</option>
+										<option value="project">Projects</option>
+										<option value="others">Other Departments</option>
+			</select>	
+		</p>
+		<p>
+			<label for="departmentName">Article Department:</label><br/>
+			<select id="select" name="departmentName">
+										<option value="">Select One</option>
+										<option value="computer">Computer Science</option>
+										<option value="electricle">Electricle</option>
+										<option value="communication">Communication</option>
+										<option value="biotechnology">Bio Technology</option>
+										<option value="mechanical">Mechanical</option>
+										<option value="civil">Civil</option>
+										<option value="chemistry">Chemistry</option>
+										<option value="physics">Physics</option>
+										<option value="mathematics">Mathematics</option>
+										<option value="others">Other Departments</option>
+			</select>	
+		</p>
+			<label for="categoryName">Article Category:</label><br/>
+			<input type="text"   value="" name="categoryName"/>		 					
+			<p>Example:If you compose an article about WEB 2.0 then your Category is Computer Science or even it can be as Information Technology.</p>	
+		<p>
+			<label for="tagName">Related Tags:</label><br/>
+			<input type="text" id="datepick" class="" value="" name="tagName"/>
+		</p>
+		<p>
+			<label for="author"></label><br/>
+			<input type="hidden"  class="" value="Moderator" name="author"/>
+		</p>
+		
+		
+		<p>
+			<label for="articleContent">Article Content:</label><br/>
+			<textarea id="articleContent" class="full wysiwyg"  cols="1000" rows="40" name="articleContent"></textarea>
+		</p>
+		
+		<p>
+			<label for="enabled">Option:</label><br/>
+			<select id="select" name="enabled">
+										<option value="">Select One</option>
+										<option value="0">To Drafts</option>
+										<option value="1">To Publish</option>
+			</select>	
+		</p>			
+		<p>
+		<input type="submit" name="submit" value="Submit"  />
+		<input type="reset" name="reset" value="Reset" />
+		
+
+</fieldset>
+#{/form}	
+
+
+
+
+
+
+
+
+
+<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">
+					<div class="colgroup leading
+				</div>
+					
+					<div class="clear">&nbsp;</div>
+				
+				</section>
+				<!-- End of Left column/section -->
+				
+				<aside class="column width2">
+					<div id="rightmenu">
+						<header>
+							<h3>Your Account</h3>
+						</header>
+						<dl class="first">
+							<dt><img width="16" height="16" alt="" src="@{'public/images/user/key.png'}"></dt>
+							<dd><a href="#">Guide To ur first article</a></dd>
+							<dd class="last">Free Account.</dd>
+							
+							<dt><img width="16" height="16" alt="" src="@{'public/images/user/help.png'}"></dt>
+							<dd><a href="#">Support</a></dd>
+							<dd class="last">Documentation and FAQ</dd>
+						</dl>
+					</div>
+					<div class="content-box">
+						<header>
+							<h3></h3>
+						</header>
+						<section>
+							
+						</section>
+					</div>
+				</aside>
+				<!-- End of Right column/section -->
+				
+		</div>
+		<!-- End of Wrapper -->
+	</div>

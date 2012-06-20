@@ -1,0 +1,61 @@
+	#{extends 'admin.html'  /}
+
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">					
+
+					
+					
+					#{ form @admin.register() }
+					<fieldset>
+							<input type="hidden" value="${ac.registerNo}" name="_reg"/>
+							<p>
+								<label>Name:</label>&nbsp  				${ac.name}
+								<input type="hidden" id="input2" class="	" value="${ac.name}" name="name"/>
+							</p>
+							<p>
+								<label for="registerNo">Registerno:</label>&nbsp   ${ac.registerNo}
+								<input type="hidden" id="input2" class="	" value="${ac.registerNo}" name="registerno"/>
+							</p>
+							<p>
+								<label for="password">Password:</label>&nbsp 	
+								<input type="hidden" id="input2" class="	" value="${ac.password}" name="password"/>
+							</p>
+							<p>
+								<label for="createdAt">createdAt:</label>&nbsp 		${ac.createdAt}
+								<input type="hidden" id="input2" class="	" value="${ac.createdAt}" name="createdAt"/>
+							</p>
+							<p>
+								<label for="mailId">MailId:</label>&nbsp;  ${ac.mailId}
+								<input type="hidden" id="input2" class="	" value="${ac.mailId}" name="mailId"/>
+							</p>
+							
+							<p>
+								<label for="accountType">AccountType:</label>&nbsp
+								
+								<input type="radio" name="accountType" value="student" /> Student
+								<input type="radio" name="accountType" value="moderator" /> Moderator
+								<input type="radio" name="accountType" value="faculty" /> Faculty 
+							</p>
+							
+							
+							<p>
+								<label for="isEnabled">Click here to Enable:</label>&nbsp
+								<input type="radio" name="isEnabled" value="1" />  enable
+								<input type="radio" name="isEnabled" value="0" />  disable
+							</p>
+							*{
+							#{a @admin.register(ac.username,accountType)}<input type="submit" name="submit" value="Accept"  />#{/a}
+							#{a @admin.register()}<input type="submit" name="submit" value="Delete"  />#{/a}
+							<input type="submit" name="submit" value="Accept"  />
+							}*
+							<input type="submit" name="submit" value="Accept"  />
+							<input type="reset" name="reset" value="Reject" />
+							
+							
+							
+				
+					</fieldset>
+				#{/form}			

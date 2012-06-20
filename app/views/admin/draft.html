@@ -1,0 +1,41 @@
+#{extends 'admin.html'   /}
+
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+			<section class="column width6 first">
+				<h3>Article Tables</h3>
+					
+					<table class="display stylized" id="example">
+						<thead>
+							<tr>
+								<th>Article Title</th>
+								<th>Category</th>
+								<th>Date & Time</th>
+							</tr>
+						</thead>
+						<tbody>
+						#{list items:art, as:'show'}
+							<tr class="gradeX">
+								<td><a href="@{admin.display(show)}">${show.title}</td>
+								<td>${show.categoryName}</td>
+								<td>${show.createdAt}</td>
+							</tr>
+						#{/list}
+							
+						</tbody>
+						<tfoot>
+							<tr>
+								<th>Article Title</th>
+								<th>Category</th>
+								<th>Date & Tsime</th>
+							</tr>
+						</tfoot>
+					</table>
+					<div class="clear">&nbsp;</div>
+			</section>
+		</div>
+	</div>
+
+					

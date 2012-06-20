@@ -1,0 +1,66 @@
+	#{extends 'admin.html'  /}
+
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">					
+
+					
+					#{form @admin.deleteuser()}
+					
+					<fieldset>
+							<input type="hidden" value="${ac.registerNo}" name="_reg"/>
+							<p>
+								<label>Firstname:</label>&nbsp  				${ac.name}
+								<input type="hidden" id="input2" class="	" value="${ac.name}" name="name"/>
+							</p>
+							
+							<p>
+								<label for="registerNo">Registerno:</label>&nbsp   ${ac.registerNo}
+								<input type="hidden" id="input2" class="	" value="${ac.registerNo}" name="registerno"/>
+							</p>
+							
+							<p>
+								<label for="createdAt">createdAt:</label>&nbsp 		${ac.createdAt}
+								<input type="hidden" id="input2" class="	" value="${ac.createdAt}" name="createdAt"/>
+							</p>
+								
+							<p>
+								<label for="password">Password:</label>&nbsp 	********
+								<input type="hidden" id="input2" class="	" value="${ac.password}" name="password"/>
+							</p>
+							<p>
+								<label for="mailId">MailId:</label>&nbsp;  ${ac.mailId}
+								<input type="hidden" id="input2" class="	" value="${ac.mailId}" name="mailId"/>
+							</p>
+							
+							<p>
+								<label for="input2">AccountType:</label>&nbsp; ${ac.accountType}
+							</p>
+							
+							<p>
+								<label for="input2">Change AccountType:</label>
+									<input type="radio" name="accountType" value="student" /> Student
+								<input type="radio" name="accountType" value="moderator" /> Moderator
+								<input type="radio" name="accountType" value="faculty" /> Faculty 
+							</p>
+							
+							<p>
+								<label for="isDeleted">Delete this account:</label>&nbsp
+								<input type="radio" name="isDeleted" value="1" />  YES
+								<input type="radio" name="isDeleted" value="0" />  NO
+							</p>
+							
+							<p>
+								<label for="Id"></label>&nbsp  				
+								<input type="hidden" id="input2" class="" value="${ac.id}" name="Id"/>
+							</p>
+							
+							
+							<input type="submit" name="submit" value="Accept"  />
+							
+							<input type="reset" name="submit.highlight" value="Reset" onClick="User/sample.html">
+				
+					</fieldset>
+				#{/form}		

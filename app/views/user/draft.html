@@ -1,0 +1,115 @@
+#{extends 'user.html'  /}
+<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><a href="@{user.index(c.id)}"><font color="white">E-Mags</font></a><!--<span>Administry</span> demo--><h4>A Premium Magazine	</h4></div>
+			<!-- Top navigation -->
+			<div id="topnav">
+				
+				Logged in as <b>${c.name}</b>
+				<span>|</span> <a href="@{user.passcheck(c.id)}">Settings</a>
+				<span>|</span> <a href="@{user.logout(c)}">Logout</a><br />
+				
+			</div>
+			<!-- End of Top navigation -->
+			<!-- Main navigation -->
+			<nav id="menu">
+				<ul class="sf-menu">
+					<li class="current"><a href="@{user.index(c.id)}">DashBoard</a></li>
+					
+					
+					<li>
+						<a href="#">Articles</a>
+						<ul>
+							<li>
+								<a href="#">Sample Article</a>
+							</li>
+							<li>
+								<a href="#">New Article</a>
+								<ul>
+									<li><a href="@{user.upload(c.id)}">Upload Article</a></li>
+									<li><a href="@{user.article(c.id)}">Compose Article</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Your Archieves</a>
+						<ul>
+							<li>
+								<a href="@{user.published(c.id)}">Published</a>
+							</li>
+							<li>
+								<a href="@{user.draft(c.id)}">Drafts</a>
+							</li>
+							<li>
+								<a href="@{user.posted(c.id)}">Posted</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			<aside><b><a href="@{user.passcheck(c.id)}">Basic Info</a></b></aside>
+			
+			<!-- End of Aside links -->
+		</div>
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>Dashboard</h1>
+			<!-- Quick search box -->
+			#{form @user.search()}<input class="" type="text" value="Enter Article Name to search " id="q" name="keyword" />
+							<input class="" type="hidden" value="${c.id}"  name="a" />
+			#{/form}
+		</div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">
+
+<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">					
+					
+					<h3></h3>
+					
+					<div class="box box-info">Your Draft Articles</div>
+					
+					<table id="report" class="stylized full" style="">
+						<thead>
+							<tr>
+								<th>Article Title</th>
+								<th>Created At</th>
+								<th>Category</th>
+							</tr>
+						</thead>
+						<tbody>
+							#{list items:art, as:'show'}
+								<td class="title">
+									<div>
+										<b>${show.title}</b>
+										<br>
+										 <a href="@{user.editdraft(c.id,show.id)}">show</a> &middot; <a href="@{user.delete(show.id,c.id)}">Delete</a>
+										</br>
+									</div>
+								</td>						
+								<td>${art.createdAt}</td>
+								<td>${art.categoryName}</td>
+							</tr>
+							#{/list}
+						</tbody>
+					</table>
+				</section>
+			</div>
+		</div>
